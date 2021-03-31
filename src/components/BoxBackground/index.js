@@ -8,9 +8,9 @@ import {colors} from '../../styles';
 import styles from './styles';
 
 const BoxBackground = (props) => {
-  const {content, style, isLastPage, updatePage, setSteps, nextQuestion, setNextQuestion, scrollEnabled} = props;
+  const {content, style, isLastPage, updatePage, setSteps, nextQuestion, setNextQuestion} = props;
   const [pagination, setPagination] = useState(0);
-  const [offset, setOffset] = useState(0);
+  // const [offset, setOffset] = useState(0);
   const [isEndPage, setIsEndPage] = useState(false);
   let flatListRef = null;
 
@@ -28,14 +28,14 @@ const BoxBackground = (props) => {
   }, [nextQuestion])
 
   const checkDireciton = (event) => {
-    const currentOffset = event.nativeEvent.contentOffset.x;
-      if(currentOffset > offset && !scrollEnabled && flatListRef !== null && !nextQuestion){
-        flatListRef.scrollToIndex({index: pagination});
-      }else{
-        setOffset(currentOffset);
+    // const currentOffset = event.nativeEvent.contentOffset.x;
+      // if(currentOffset > offset && !scrollEnabled && flatListRef !== null && !nextQuestion){
+      //   flatListRef.scrollToIndex({index: pagination});
+      // }else{
+        // setOffset(currentOffset);
         changePaginationIndex(event);
         if(nextQuestion) setNextQuestion(false);
-      }
+      // }
   }
 
   const changePaginationIndex = (event) => {
@@ -95,7 +95,7 @@ BoxBackground.propTypes = {
   setSteps: PropTypes.func,
   nextQuestion: PropTypes.bool,
   setNextQuestion: PropTypes.func,
-  scrollEnabled: PropTypes.bool,
+  // scrollEnabled: PropTypes.bool,
 };
 
 BoxBackground.defaultProps = {
@@ -105,6 +105,6 @@ BoxBackground.defaultProps = {
   setSteps: () => {},
   nextQuestion: false,
   setNextQuestion: () => {},
-  scrollEnabled: false,
+  // scrollEnabled: false,
 };
 export default BoxBackground;
